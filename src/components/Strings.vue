@@ -1,7 +1,7 @@
 <template>
   <div class="strings" v-if="strings.g">
     <button class="strings__button" @click="toggleNotes">Show/hide notes</button>
-    <div>
+    <div class="strings__container">
       <string :root="mKey.tonic" :position="1" :string="strings.e" :showNotes="showNotes"></string>
       <string :root="mKey.tonic" :position="2" :string="strings.b" :showNotes="showNotes"></string>
       <string :root="mKey.tonic" :position="3" :string="strings.g" :showNotes="showNotes"></string>
@@ -66,5 +66,10 @@ export default class Strings extends Vue {
     position: relative;
     top: 1px;
   }
+}
+
+.strings__container {
+  overflow-x: auto;
+  padding-top: 10px;
 }
 </style>
