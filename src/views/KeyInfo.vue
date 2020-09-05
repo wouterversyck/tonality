@@ -1,10 +1,35 @@
 <template>
   <div class="key-info">
-    <h3>Key info</h3>
-    <key-selector @key-selected="onKeySelected" />
-    <scale :m-key="selectedKey" />
-    <chords :m-key="selectedKey" />
-    <strings :m-key="selectedKey" />
+    <v-card flat>
+      <v-card-title>
+        <h3>Key info</h3>
+      </v-card-title>
+      <v-card-text>
+        <key-selector @key-selected="onKeySelected" />
+      </v-card-text>
+    </v-card>
+    <v-tabs dark>
+      <v-tab>
+        Scale
+      </v-tab>
+      <v-tab>
+        Chords
+      </v-tab>
+      <v-tab-item>
+        <v-card flat>
+          <v-card-text>
+            <scale :m-key="selectedKey" />
+          </v-card-text>
+        </v-card>
+      </v-tab-item>
+      <v-tab-item>
+        <v-card flat>
+          <v-card-text>
+            <chords :m-key="selectedKey" />
+          </v-card-text>
+        </v-card>
+      </v-tab-item>
+    </v-tabs>
   </div>
 </template>
 

@@ -1,7 +1,5 @@
 <template>
-  <select v-model="selectedKey" @change="onKeyChanged">
-    <option v-for="key in allKeys" :key="key">{{ key }}</option>
-  </select>
+  <v-select v-model="selectedKey" @change="onKeyChanged" :items="allKeys" label="Select key"></v-select>
 </template>
 
 <script lang="ts">

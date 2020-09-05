@@ -30,8 +30,10 @@ export default class String extends Vue {
   showNotes!: boolean;
 
   calcIndicator(position: number, index: number): boolean {
-    return (position === 3 && (index === 2 || index === 4 || index === 6 || index === 8 || index === 14 || index === 16))
-    || ((position == 2 || position == 4) && index === 11);
+    return (
+      (position === 3 && (index === 2 || index === 4 || index === 6 || index === 8 || index === 14 || index === 16)) ||
+      ((position == 2 || position == 4) && index === 11)
+    );
   }
 }
 </script>
@@ -48,10 +50,11 @@ export default class String extends Vue {
     top: -7.5px;
     width: 15px;
     height: 15px;
-    font-size: small;
+    font-size: smaller;
     border-radius: 50%;
     margin: auto;
     color: white;
+    line-height: 1.5;
 
     &.string__note--present:not(.string__note--root) {
       background: black;

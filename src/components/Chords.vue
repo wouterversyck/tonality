@@ -1,21 +1,21 @@
 <template>
   <div class="chords">
-    <div class="chords__listing">
-      <div v-for="chord in chords" :key="chord[0]">
-        <span class="chords__chord-item" @click="getChordInfo(chord[0])">
-          {{ chord[0] }}
-        </span>
-        <span class="chords__chord-item" @click="getChordInfo(chord[1])">
-          {{ chord[1] }}
-        </span>
-      </div>
-    </div>
-    <div class="chords__details" v-if="chordInfo.name">
-      <p>{{ chordInfo.name }}</p>
-      <p>
+    <v-card flat>
+      <v-card-text>
+        <table class="chords__table">
+          <tr v-for="chord in chords" :key="chord[0]">
+            <td @click="getChordInfo(chord[0])">{{ chord[0] }}</td>
+            <td @click="getChordInfo(chord[1])">{{ chord[1] }}</td>
+          </tr>
+        </table>
+      </v-card-text>
+    </v-card>
+    <v-card v-if="chordInfo.name">
+      <v-card-title>{{ chordInfo.name }}</v-card-title>
+      <v-card-text>
         <span class="chords__chord-item" v-for="note in chordInfo.notes" :key="note">{{ note }}</span>
-      </p>
-    </div>
+      </v-card-text>
+    </v-card>
   </div>
 </template>
 
@@ -69,8 +69,17 @@ export default class Scale extends Vue {
 <style scoped lang="scss">
 .chords {
   margin: 15px;
+  .chords__table {
+    td:first-child {
+      padding-right: 50px;
+    }
+    td:last-child {
+      text-align: right;
+    }
+  }
+
   .chords__chord-item {
-    margin: 5px;
+    margin-right: 15px;
   }
 }
 </style>

@@ -1,7 +1,7 @@
 <template>
   <div class="strings" v-if="strings.g">
-    <button class="strings__button" @click="toggleNotes">Show/hide notes</button>
-    <div class="strings__container">
+    <v-switch v-model="showNotes" label="Show / hide notes"></v-switch>
+    <div class="strings__container" @touchend="stopTouch">
       <string :root="mKey.tonic" :position="1" :string="strings.e" :showNotes="showNotes"></string>
       <string :root="mKey.tonic" :position="2" :string="strings.b" :showNotes="showNotes"></string>
       <string :root="mKey.tonic" :position="3" :string="strings.g" :showNotes="showNotes"></string>
@@ -26,8 +26,12 @@ export default class Strings extends Vue {
 
   showNotes = false;
 
-  toggleNotes() {
-    this.showNotes = !this.showNotes;
+  /**
+   * Prevent tabs from swiping
+   * @param event
+   */
+  stopTouch(event: Event): void {
+    event.stopPropagation();
   }
 
   get strings(): ScaleOnStrings {
@@ -45,31 +49,9 @@ export default class Strings extends Vue {
 </script>
 
 <style scoped lang="scss">
-.strings__button {
-  background-color: #44c767;
-  border-radius: 28px;
-  border: 1px solid #18ab29;
-  display: inline-block;
-  cursor: pointer;
-  color: #ffffff;
-  font-size: 17px;
-  padding: 10px 25px;
-  text-decoration: none;
-  text-shadow: 0px 1px 0px #2f6627;
-  margin: 15px 0 25px 0;
-
-  &:hover {
-    background-color: #5cbf2a;
-  }
-
-  &:active {
-    position: relative;
-    top: 1px;
-  }
-}
-
 .strings__container {
   overflow-x: auto;
-  padding-top: 10px;
+  padding-top: 20px;
+  overflow-y: hidden;
 }
 </style>
