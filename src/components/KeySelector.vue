@@ -7,24 +7,25 @@ import { Component, Vue } from 'vue-property-decorator';
 import { Key as KeyLib } from '@tonaljs/tonal';
 import { MajorKey, MinorKey } from '@tonaljs/key';
 import { keys } from '@/helper-functions';
+import { Action } from 'vuex-class';
 
 @Component
 export default class KeyInfo extends Vue {
   selectedKey = '';
   allKeys = keys;
 
+  @Action
+  selectKey!: (key: MinorKey | MajorKey) => void;
+
   mounted(): void {
-    const key = KeyLib.majorKey('c');
-    this.emit(key);
+    const key = this.$store.state.selectedKey;
+    this.selectedKey = key.tonic;
+    this.selectKey(key);
   }
 
   onKeyChanged(): void {
     const key = this.getKey(this.selectedKey);
-    this.emit(key);
-  }
-
-  private emit(key: MinorKey | MajorKey): void {
-    this.$emit('key-selected', key);
+    this.selectKey(key);
   }
 
   private getKey(key: string): MajorKey | MinorKey {

@@ -1,9 +1,6 @@
 <template>
   <div class="key-info">
     <v-card flat>
-      <v-card-title>
-        <h3>Key info</h3>
-      </v-card-title>
       <v-card-text>
         <key-selector @key-selected="onKeySelected" />
       </v-card-text>
@@ -18,14 +15,14 @@
       <v-tab-item>
         <v-card flat>
           <v-card-text>
-            <scale :m-key="selectedKey" />
+            <scale />
           </v-card-text>
         </v-card>
       </v-tab-item>
       <v-tab-item>
         <v-card flat>
           <v-card-text>
-            <chords :m-key="selectedKey" />
+            <chords />
           </v-card-text>
         </v-card>
       </v-tab-item>
@@ -40,16 +37,13 @@ import KeySelector from '@/components/KeySelector.vue';
 import Scale from '@/components/Scale.vue';
 import Chords from '@/components/Chords.vue';
 import Strings from '@/components/Strings.vue';
-import { Key } from '@tonaljs/tonal';
 
 @Component({
   components: { Chords, Scale, KeySelector, Strings },
 })
 export default class KeyInfo extends Vue {
-  selectedKey: MajorKey | MinorKey = Key.majorKey('c');
-
   onKeySelected(key: MajorKey | MinorKey): void {
-    this.selectedKey = key;
+    this.$store.dispatch('selectKey', key);
   }
 }
 </script>

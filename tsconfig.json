@@ -7,6 +7,7 @@
     "importHelpers": true,
     "moduleResolution": "node",
     "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
@@ -15,6 +16,7 @@
     "types": [
       "webpack-env",
       "jest",
+      "reflect-metadata",
       "vuetify"
     ],
     "paths": {

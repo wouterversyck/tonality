@@ -2,23 +2,23 @@
   <v-app>
     <v-navigation-drawer v-model="drawer" app>
       <v-list dense>
-        <v-list-item link>
+        <v-list-item to="/" link>
           <v-list-item-action>
             <v-icon>mdi-home</v-icon>
           </v-list-item-action>
           <v-list-item-content>
             <v-list-item-title>
-              <router-link to="/">Home</router-link>
+              Home
             </v-list-item-title>
           </v-list-item-content>
         </v-list-item>
-        <v-list-item link>
+        <v-list-item to="/about" link>
           <v-list-item-action>
             <v-icon>mdi-email</v-icon>
           </v-list-item-action>
           <v-list-item-content>
             <v-list-item-title>
-              <router-link to="/about">About</router-link>
+              About
             </v-list-item-title>
           </v-list-item-content>
         </v-list-item>

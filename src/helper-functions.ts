@@ -53,40 +53,53 @@ export const numericKeys = new Map([
   ['B', 11],
 ]);
 
-function getStringWithStartingPoint(startingPoint: number, scale: string[]): string[] {
-  const notes: string[] = [];
+function getStringWithStartingPoint(startingPoint: number, height: number, scale: string[]): StringNote[] {
+  const notes: StringNote[] = [];
 
   for (let i = 0; i < 17; i++) {
     let found = false;
     const numericNote = (i + startingPoint) % 12;
+    if (numericNote === 0) {
+      height++;
+    }
     for (const note of scale) {
       if (numericKeys.get(note) === numericNote) {
-        notes[i] = note;
+        notes[i] = {
+          note,
+          height,
+        };
         found = true;
       }
     }
     if (!found) {
-      notes[i] = '';
+      notes[i] = {};
     }
   }
 
   return notes;
 }
 
+export interface StringNote {
+  note?: string;
+  height?: number;
+}
+
 export interface ScaleOnStrings {
-  e: string[];
-  b: string[];
-  g: string[];
-  d: string[];
-  a: string[];
+  lowE: StringNote[];
+  b: StringNote[];
+  g: StringNote[];
+  d: StringNote[];
+  a: StringNote[];
+  highE: StringNote[];
 }
 
 export function createStringsForScale(scale: string[]): ScaleOnStrings {
   return {
-    e: getStringWithStartingPoint(5, scale),
-    b: getStringWithStartingPoint(0, scale),
-    g: getStringWithStartingPoint(8, scale),
-    d: getStringWithStartingPoint(3, scale),
-    a: getStringWithStartingPoint(10, scale),
+    highE: getStringWithStartingPoint(5, 4, scale),
+    b: getStringWithStartingPoint(0, 3, scale),
+    g: getStringWithStartingPoint(8, 3, scale),
+    d: getStringWithStartingPoint(3, 3, scale),
+    a: getStringWithStartingPoint(10, 2, scale),
+    lowE: getStringWithStartingPoint(5, 2, scale),
   };
 }

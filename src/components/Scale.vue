@@ -1,28 +1,30 @@
 <template>
   <div class="scale">
     <span class="scale__scale-item" v-for="note in scale" :key="note">{{ note }}</span>
-    <strings :m-key="mKey" />
+    <strings />
   </div>
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator';
+import { Component, Vue } from 'vue-property-decorator';
 import { MajorKey, MinorKey } from '@tonaljs/key';
 import { isMajor } from '@/helper-functions';
 import Strings from '@/components/Strings.vue';
+import { State } from 'vuex-class';
+
 @Component({
   components: { Strings },
 })
 export default class Scale extends Vue {
-  @Prop()
-  mKey!: MajorKey | MinorKey;
+  @State
+  selectedKey!: MajorKey | MinorKey;
 
   get scale(): string[] {
-    if (isMajor(this.mKey)) {
-      return [...this.mKey.scale];
+    if (isMajor(this.selectedKey)) {
+      return [...this.selectedKey.scale];
     }
 
-    return [...this.mKey.natural.scale];
+    return [...this.selectedKey.natural.scale];
   }
 }
 </script>
