@@ -1,0 +1,1 @@
+.chord-view{display:flex;overflow:hidden}.chord-view .chord-view__chords{padding:15px;height:calc(100vh - 64px);overflow-y:auto;width:25vw}.chord-view .chord-view__chord-info{height:calc(100vh - 64px);overflow-y:auto;width:75vw}
