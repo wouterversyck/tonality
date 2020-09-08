@@ -10,41 +10,30 @@
         </table>
       </v-card-text>
     </v-card>
-    <div ref="chordInfo">
-      <v-card v-if="chordInfo.name">
-        <v-card-title>{{ chordInfo.name }} <v-icon @click="playChord(chordInfo.notes)">mdi-play</v-icon></v-card-title>
-        <v-card-text>
-          <span class="chords__chord-item" v-for="note in chordInfo.notes" :key="note">{{ note }}</span>
-        </v-card-text>
-      </v-card>
-    </div>
+    <chord-info v-if="chordInfo.notes" :chord="chordInfo"></chord-info>
   </div>
 </template>
 
 <script lang="ts">
-import { Component, Vue, Watch } from 'vue-property-decorator';
+import { Component, Vue } from 'vue-property-decorator';
 import { MajorKey, MinorKey } from '@tonaljs/key';
 import { Chord } from '@tonaljs/chord';
 import { Chord as ChordLib } from '@tonaljs/tonal';
 import { isMajor } from '@/helper-functions';
 import { State } from 'vuex-class';
-import { $inject } from '@vanroeybe/vue-inversify-plugin';
-import { AudioService } from '@/services/audio-service';
+import ChordInfo from '@/components/ChordInfo.vue';
 
-@Component
-export default class Scale extends Vue {
+@Component({
+  components: { ChordInfo },
+})
+export default class Chords extends Vue {
   chordInfo: Chord = {} as Chord;
 
   @State
   selectedKey!: MajorKey | MinorKey;
 
-  @$inject()
-  private audioService!: AudioService;
-
   getChordInfo(chord: string): void {
     this.chordInfo = ChordLib.get(chord);
-
-    (this.$refs.chordInfo as HTMLElement).scrollIntoView();
   }
 
   get chords(): [string, string][] {
@@ -53,15 +42,6 @@ export default class Scale extends Vue {
     }
 
     return this.selectedKey.natural.chords.map(e => [this.removeSeventh(e), e]);
-  }
-
-  playChord(notes: string[]) {
-    this.audioService.soundNotes(notes.map(e => e + 3));
-  }
-
-  @Watch('mKey')
-  private clearChordInfo(): void {
-    this.chordInfo = {} as Chord;
   }
 
   private removeSeventh(chordString: string): string {

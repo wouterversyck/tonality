@@ -1,13 +1,14 @@
 <template>
   <div class="string" :class="'string--nr-' + position">
-    <div class="string__fret" v-for="(note, index) in string" :key="note.note ? note.note + index : 'empty-' + index">
-      <span class="string__nr-indicator" v-if="calcIndicator(position, index)"></span>
+    <div class="string__fret" v-for="(note, index) in string" :key="note ? note.note + index : 'empty-' + index">
+      <span class="string__nr-indicator" v-if="note && calcIndicator(position, index)"></span>
       <div
+        v-if="note"
         @click="soundNote(note)"
         class="string__note"
-        :class="{ 'string__note--present': note.note, 'string__note--root': note.note === root }"
+        :class="{ 'string__note--present': note, 'string__note--root': note.note === root }"
       >
-        <span :hidden="!showNotes">{{ note.note }}</span>
+        <span v-if="note" :hidden="!showNotes">{{ note.note }}</span>
       </div>
     </div>
   </div>
@@ -57,14 +58,14 @@ export default class String extends Vue {
 
   .string__note {
     position: relative;
-    top: -7.5px;
-    width: 15px;
-    height: 15px;
+    top: -9px;
+    width: 17px;
+    height: 17px;
     font-size: smaller;
     border-radius: 50%;
     margin: auto;
     color: white;
-    line-height: 1.4;
+    line-height: 1.7;
     cursor: pointer;
 
     &.string__note--present:not(.string__note--root) {
