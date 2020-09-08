@@ -14,7 +14,7 @@ export function getImagesForChord(chord: string) {
 
   const images = [];
   for (let i = 0; i < imageMap.nrImages; i++) {
-    images.push(`${imageMap.basePath}${imageMap.file}-${i}${imageMap.extension}`);
+    images.push(`${process.env.BASE_URL}${imageMap.basePath}${imageMap.file}-${i}${imageMap.extension}`);
   }
 
   return images;
