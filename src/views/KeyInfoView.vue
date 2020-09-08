@@ -41,7 +41,7 @@ import Strings from '@/components/Strings.vue';
 @Component({
   components: { Chords, Scale, KeySelector, Strings },
 })
-export default class KeyInfo extends Vue {
+export default class KeyInfoView extends Vue {
   onKeySelected(key: MajorKey | MinorKey): void {
     this.$store.dispatch('selectKey', key);
   }

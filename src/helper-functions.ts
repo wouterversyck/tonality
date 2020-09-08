@@ -1,38 +1,9 @@
 import { MajorKey, MinorKey } from '@tonaljs/key';
+import { chordToDiagramMappings } from '@/image-map';
 
 export function isMajor(key?: MajorKey | MinorKey): key is MajorKey {
   return key?.type === 'major';
 }
-
-const chordToDiagramMappings = new Map([
-  [
-    'A',
-    {
-      chord: 'A',
-      nrImages: 8,
-      basePath: '/img/chords/a/',
-      extension: '.png',
-    },
-  ],
-  [
-    'A#',
-    {
-      chord: 'A_sharp',
-      nrImages: 5,
-      basePath: '/img/chords/a_sharp/',
-      extension: '.png',
-    },
-  ],
-  [
-    'Bb',
-    {
-      chord: 'A_sharp',
-      nrImages: 5,
-      basePath: '/img/chords/a_sharp/',
-      extension: '.png',
-    },
-  ],
-]);
 
 export function getImagesForChord(chord: string) {
   const imageMap = chordToDiagramMappings.get(chord);
@@ -43,10 +14,14 @@ export function getImagesForChord(chord: string) {
 
   const images = [];
   for (let i = 0; i < imageMap.nrImages; i++) {
-    images.push(`${imageMap.basePath}${imageMap.chord}-${i}${imageMap.extension}`);
+    images.push(`${imageMap.basePath}${imageMap.file}-${i}${imageMap.extension}`);
   }
 
   return images;
+}
+
+export function getAllChords(): string[] {
+  return Array.from(chordToDiagramMappings.entries()).map(e => e[0]);
 }
 
 export const keys = [

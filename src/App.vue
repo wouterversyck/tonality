@@ -2,7 +2,7 @@
   <v-app>
     <v-navigation-drawer v-model="drawer" app>
       <v-list dense>
-        <v-list-item to="/" link>
+        <v-list-item to="/" link @click="drawer = false">
           <v-list-item-action>
             <v-icon>mdi-home</v-icon>
           </v-list-item-action>
@@ -12,13 +12,13 @@
             </v-list-item-title>
           </v-list-item-content>
         </v-list-item>
-        <v-list-item to="/about" link>
+        <v-list-item to="/chords" link @click="drawer = false">
           <v-list-item-action>
-            <v-icon>mdi-email</v-icon>
+            <v-icon>mdi-music-box-multiple-outline</v-icon>
           </v-list-item-action>
           <v-list-item-content>
             <v-list-item-title>
-              About
+              Chords
             </v-list-item-title>
           </v-list-item-content>
         </v-list-item>

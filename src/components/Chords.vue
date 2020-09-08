@@ -10,14 +10,13 @@
         </table>
       </v-card-text>
     </v-card>
-    <chord-info v-if="chordInfo.notes" :chord="chordInfo"></chord-info>
+    <chord-info v-if="chordInfo" :chord="chordInfo"></chord-info>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import { MajorKey, MinorKey } from '@tonaljs/key';
-import { Chord } from '@tonaljs/chord';
 import { Chord as ChordLib } from '@tonaljs/tonal';
 import { isMajor } from '@/helper-functions';
 import { State } from 'vuex-class';
@@ -27,13 +26,13 @@ import ChordInfo from '@/components/ChordInfo.vue';
   components: { ChordInfo },
 })
 export default class Chords extends Vue {
-  chordInfo: Chord = {} as Chord;
+  chordInfo = '';
 
   @State
   selectedKey!: MajorKey | MinorKey;
 
   getChordInfo(chord: string): void {
-    this.chordInfo = ChordLib.get(chord);
+    this.chordInfo = chord;
   }
 
   get chords(): [string, string][] {
@@ -76,10 +75,6 @@ export default class Chords extends Vue {
     td:last-child {
       text-align: right;
     }
-  }
-
-  .chords__chord-item {
-    margin-right: 15px;
   }
 }
 </style>
