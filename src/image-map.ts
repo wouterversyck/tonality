@@ -10,16 +10,6 @@ export const chordToDiagramMappings = new Map([
     },
   ],
   [
-    'A#',
-    {
-      name: 'A#',
-      file: 'a_sharp',
-      nrImages: 5,
-      basePath: '/img/chords/a_sharp/',
-      extension: '.png',
-    },
-  ],
-  [
     'Bb',
     {
       name: 'Bb',
@@ -30,7 +20,7 @@ export const chordToDiagramMappings = new Map([
     },
   ],
   [
-    'A#7',
+    'Bb7',
     {
       name: 'A#7',
       file: 'a_sharp_7',
@@ -40,17 +30,17 @@ export const chordToDiagramMappings = new Map([
     },
   ],
   [
-    'A#dim',
+    'Bbdim',
     {
       name: 'A#dim',
       file: 'a_sharp_dim',
-      nrImages: 18,
+      nrImages: 3,
       basePath: '/img/chords/a_sharp_dim/',
       extension: '.png'
     }
   ],
   [
-    'A#m',
+    'Bbm',
     {
       name: 'A#m',
       file: 'a_sharp_m',
@@ -60,7 +50,7 @@ export const chordToDiagramMappings = new Map([
     }
   ],
   [
-    'A#m7',
+    'Bbm7',
     {
       name: 'A#m7',
       file: 'a_sharp_m_7',
@@ -70,11 +60,11 @@ export const chordToDiagramMappings = new Map([
     }
   ],
   [
-    'A#maj7',
+    'Bbmaj7',
     {
       name: 'A#maj7',
       file: 'a_sharp_maj_7',
-      nrImages: 15,
+      nrImages: 7,
       basePath: '/img/chords/a_sharp_maj_7/',
       extension: '.png'
     }
@@ -94,7 +84,7 @@ export const chordToDiagramMappings = new Map([
     {
       name: 'A11',
       file: 'a_11',
-      nrImages: 42,
+      nrImages: 17,
       basePath: '/img/chords/a_11/',
       extension: '.png'
     }
@@ -104,7 +94,7 @@ export const chordToDiagramMappings = new Map([
     {
       name: 'A4',
       file: 'a_4',
-      nrImages: 23,
+      nrImages: 7,
       basePath: '/img/chords/a_4/',
       extension: '.png'
     }
@@ -114,7 +104,7 @@ export const chordToDiagramMappings = new Map([
     {
       name: 'A6',
       file: 'a_6',
-      nrImages: 23,
+      nrImages: 7,
       basePath: '/img/chords/a_6/',
       extension: '.png'
     }
@@ -124,7 +114,7 @@ export const chordToDiagramMappings = new Map([
     {
       name: 'A7',
       file: 'a_7',
-      nrImages: 25,
+      nrImages: 9,
       basePath: '/img/chords/a_7/',
       extension: '.png'
     }

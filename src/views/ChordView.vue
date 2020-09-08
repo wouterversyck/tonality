@@ -37,14 +37,14 @@ export default class ChordView extends Vue {
 
   .chord-view__chords {
     padding: 15px;
-    height: 80vh;
-    overflow: scroll;
+    height: calc(100vh - 64px);
+    overflow-y: auto;
     width: 25vw;
   }
 
   .chord-view__chord-info {
-    height: 80vh;
-    overflow: scroll;
+    height: calc(100vh - 64px);
+    overflow-y: auto;
     width: 75vw;
   }
 }
